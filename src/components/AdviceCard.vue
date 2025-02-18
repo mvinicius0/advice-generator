@@ -1,19 +1,15 @@
 <template>
-  <div class="card">
-    <div class="advice">Advice #{{ adviceId }}</div>
-    <div class="quote">
-      {{ advice }}
+  <div class="quote-card">
+    <div class="card">
+      <p class="advice-title">ADVICE #{{ adviceId }}</p>
+      <blockquote class="advice-text">"{{ advice }}"</blockquote>
+      <div class="divider">
+        <img src="../assets/pattern-divider-desktop.svg" alt="" />
+      </div>
+      <button class="button" @click="fetchAdvice" aria-label="Get new advice">
+        <img src="../assets/icon-dice.svg" alt="" />
+      </button>
     </div>
-    <div class="divider">
-      <img src="../assets/pattern-divider-desktop.svg" alt="" />
-    </div>
-    <button
-      class="buttonAdvice"
-      @click="fetchAdvice"
-      aria-label="Get new advice"
-    >
-      <img src="../assets/icon-dice.svg" alt="" />
-    </button>
   </div>
 </template>
 
@@ -44,80 +40,72 @@ export default {
 </script>
 
 <style scoped>
-.card {
-  width: 500px;
-  height: 334px;
-  background: #313a48;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  padding: 70px;
+.quote-card {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  height: 100vh;
+  width: 100vh;
+  background: #202733;
+}
+
+.card {
+  position: relative;
+  background: #313a48;
+  color: #ffff;
+  padding: 50px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
   text-align: center;
-  color: #cee3e9;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.card .advice {
-  font-size: 14px;
+.advice-title {
   color: #53ffaa;
+  font-size: 14px;
   letter-spacing: 2px;
-  text-transform: uppercase;
-  margin: 16px 0 32px 0;
-}
-
-.card .quote {
-  font-size: 18px;
   font-weight: bold;
-  margin: 16px 0 28px 0;
+  margin-bottom: 10px;
 }
 
-.divider img {
-  width: 100%;
+.advice-text {
+  font-size: 18px;
+  margin: 15px 0;
+  line-height: 1.5;
+}
+
+.divider {
+  display: flex;
+  justify-content: center;
   margin: 20px 0;
 }
 
-.buttonAdvice {
-  width: 64px;
-  height: 64px;
-  background-color: #53ffaa;
+.divider img {
+  max-width: 100%;
+  width: 80%; /* Ajusta para ficar proporcional ao card */
+}
+
+.button {
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  background: #53ffaa;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 0 10px rgba(0, 255, 153, 0.7);
   cursor: pointer;
-  transition: transform 0.2s ease;
-  position: absolute;
-  bottom: 15.7rem;
+  font-size: 24px;
+  transition: transform 0.2s;
   border: none;
 }
 
-.buttonAdvice:active {
-  transform: scale(0.95);
-  box-shadow: 0 0 20px 5px rgba(46, 204, 113, 0.6);
-}
-
-@media (max-width: 600px) {
-  .card {
-    width: 90%;
-    height: 33%;
-    padding: 20px;
-  }
-
-  .card .quote {
-    font-size: 16px;
-  }
-
-  .buttonAdvice {
-    width: 56px;
-    height: 56px;
-    bottom: 17.5rem;
-  }
-
-  .divider img {
-    width: 100%;
-    padding-bottom: 30px;
-  }
+.button:hover {
+  transform: translateX(-50%) scale(1.1);
 }
 </style>
